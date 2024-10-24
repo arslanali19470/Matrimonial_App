@@ -1,6 +1,9 @@
 import {useContext} from 'react';
-// import {ThemeContext} from '../Theme';
 import {ThemeContext} from '../themes/index';
+import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+
+
+
 
 
 export const multiThemeColor = () => {
@@ -10,9 +13,11 @@ export const multiThemeColor = () => {
   if (theme === 'light') {
     return {
 
-      WHITE: '#ffff',
+      WHITE: '#FFFFFF',
+      Purple:"#490B3E",
+      GrayText:"#CCCCCC",
+
       TRANSPARENT: 'transparent',
-      GRAY: '#282c34',
       main_background: '#FFFFFF',
       textcolor: '#000',
       GrayBox: 'lightgray',
@@ -37,3 +42,5 @@ export const multiThemeColor = () => {
 };
 
 
+
+export { responsiveHeight, responsiveWidth, responsiveFontSize };
