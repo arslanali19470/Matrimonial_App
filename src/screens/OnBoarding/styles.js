@@ -17,29 +17,32 @@ export const styles = StyleSheet.create({
         height: responsiveHeight(7.5),
         width: responsiveWidth(90),
         justifyContent: 'center',
-        alignItems: 'flex-end',
+        alignItems: 'center',
         paddingRight: 8,
         borderRadius: 50,
-        alignSelf: "center"
+        alignSelf: "center",
+        position: "relative"
     },
     BtnText: {
         color: 'white',
-        fontWeight: 'bold',
-        fontSize: 18,
+        fontSize: responsiveFontSize(2.6),
     },
     BtnRoundIcon: {
-        height: 40,
-        width: 40,
+        height: responsiveHeight(6),
+        width: responsiveHeight(6),
         backgroundColor: 'white',
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 50,
-        marginLeft: 85,
+        position: "absolute",
+        top: responsiveHeight(.7),
+        right: responsiveWidth(2),
     },
+
     BtnDirection: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'center',
+        // justifyContent: "flex-start",
     },
 
 

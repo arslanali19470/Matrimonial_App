@@ -34,7 +34,8 @@ const OnBoarding = () => {
                 data={OnBoardData}
                 renderItem={({ item }) => (
                     <View style={styles.mainBackground}>
-                        <StatusBar translucent backgroundColor="transparent" />
+                        <StatusBar translucent backgroundColor="transparent"
+                            barStyle={currentIndex == 1 ? 'dark-content' : 'light-content'} />
                         <Picture
                             localSource={item.BackgroundImage}
                             height={responsiveHeight(100)}
@@ -71,9 +72,9 @@ const OnBoarding = () => {
                                 textAlign="center"
                                 color="#CCCCCC"
                                 fontFamily="RobotoCondensed-Regular"
-                                style={{ paddingHorizontal: 40, paddingVertical: 5, lineHeight: 24 }}
+                                style={{ paddingHorizontal: responsiveWidth(10), paddingVertical: responsiveHeight(.5), lineHeight: 24 }}
                             />
-                            <Space height={6} />
+                            <Space height={7} />
 
 
                             {currentIndex < OnBoardData.length - 1 && (
@@ -95,16 +96,17 @@ const OnBoarding = () => {
                                 </>
 
                             )}
+
                             {currentIndex == OnBoardData.length - 1 && (
                                 <TouchableOpacity style={styles.ButtonMainstyle} onPress={() => setshowHomePage(true)}>
-                                    <View style={styles.BtnDirection}>
-                                        <Text style={styles.BtnText}>Get Started</Text>
-                                        <View style={styles.BtnRoundIcon}>
-                                            <View style={{ alignItems: 'center' }}>
-                                                <MaterialIcons name="east" color="#490B3E" size={25} />
-                                            </View>
+                                    <Heading text={"Get Started"} color={"white"} />
+                                    <View style={styles.BtnRoundIcon}>
+                                        <View style={{ alignItems: 'center' }}>
+                                            <MaterialIcons name="east" color="#490B3E" size={25} />
                                         </View>
                                     </View>
+
+
                                 </TouchableOpacity>
                             )}
                         </View>
