@@ -12,16 +12,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <NavigationContainer>
-
-        {/* <StatusBar
-          backgroundColor={'transparent'}
-          barStyle="dark-content"
-          hidden={false}
-        /> */}
         <MianNavigation />
-
-
-
       </NavigationContainer>
     </Provider>
   );

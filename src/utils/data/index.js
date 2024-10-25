@@ -1,12 +1,28 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { Board1, Board2, Board3, Gradient } from "../../assets";
 
-const Appdata = () => {
-  return (
-    <View>
-      <Text>Appdata</Text>
-    </View>
-  )
-}
+export const OnBoardData = [
+  {
+    id: 1,
+    title: "Welcome to Matrimonial App",
+    description: "Love begins here—your journey to forever starts now!",
+    BackgroundImage: Board1,
+    DarkShad: Gradient,
 
-export default Appdata
+  },
+  {
+    id: 2,
+    title: "100% Verified Profiles",
+    description: "Love begins here—your journey to forever starts now!",
+    BackgroundImage: Board2,
+    DarkShad: Gradient,
+
+  },
+  {
+    id: 3,
+    title: "Welcome to Matrimonial App",
+    description: "Love begins here—your journey to forever starts now!",
+    BackgroundImage: Board3,
+    DarkShad: Gradient,
+
+  },
+]

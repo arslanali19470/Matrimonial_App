@@ -1,6 +1,7 @@
-import {useContext} from 'react';
-import {ThemeContext} from '../themes/index';
+import { useContext } from 'react';
+import { ThemeContext } from '../themes/index';
 import { responsiveHeight, responsiveWidth, responsiveFontSize } from 'react-native-responsive-dimensions';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 
 
@@ -14,8 +15,8 @@ export const multiThemeColor = () => {
     return {
 
       WHITE: '#FFFFFF',
-      Purple:"#490B3E",
-      GrayText:"#CCCCCC",
+      Purple: "#490B3E",
+      GrayText: "#CCCCCC",
 
       TRANSPARENT: 'transparent',
       main_background: '#FFFFFF',
@@ -44,3 +45,4 @@ export const multiThemeColor = () => {
 
 
 export { responsiveHeight, responsiveWidth, responsiveFontSize };
+export { MaterialIcons };
