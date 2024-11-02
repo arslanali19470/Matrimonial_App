@@ -59,10 +59,12 @@ const Picture = ({
             left: left,
             right: right,
             bottom: bottom,
+            // transform: [{ scaleX: 1.5 }],
             // backgroundColor: themeValue == 'dark' ? 'white' : 'transparent'
           }}
           source={localSource || undefined}
           resizeMode={resizeMode || 'cover'}
+
         />
       )}
     </>

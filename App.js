@@ -5,16 +5,19 @@ import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'react-native';
 import store from './src/toolkit/store';
 import MianNavigation from './src/routes/MainNavigation';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 
 
 const App = () => {
   return (
-    <Provider store={store}>
-      <NavigationContainer>
-        <MianNavigation />
-      </NavigationContainer>
-    </Provider>
+    <GestureHandlerRootView>
+      <Provider store={store}>
+        <NavigationContainer>
+          <MianNavigation />
+        </NavigationContainer>
+      </Provider>
+    </GestureHandlerRootView>
   );
 };
 

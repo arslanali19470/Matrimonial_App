@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { responsiveHeight, responsiveFontSize, multiThemeColor } from '../../utils/constant';
+import { fp, hp } from '../../utils/responsive';
 
 const Heading = ({
   text,
@@ -21,21 +22,22 @@ const Heading = ({
   marginBottom = 0,
   paddingBottom = 0,
   style = {},
-  onPress, // Pass the onPress prop
+  onPress,
   ...restProps
 }) => {
   const navigation = useNavigation();
 
   const headingStyle = {
     textAlign,
-    fontSize: responsiveFontSize(fontSize) || responsiveFontSize(2.5),
+    fontSize: fp(fontSize) || fp(2.5),
     fontWeight: weight,
     color: color || multiThemeColor().textcolor,
     fontFamily: fontFamily,
-    marginLeft: responsiveHeight(marginLeft),
-    marginTop: responsiveHeight(marginTop),
-    marginBottom: responsiveHeight(marginBottom),
-    paddingBottom: responsiveHeight(paddingBottom),
+
+    marginLeft: hp(marginLeft),
+    marginTop: hp(marginTop),
+    marginBottom: hp(marginBottom),
+    paddingBottom: hp(paddingBottom),
 
     ...style,
   };
@@ -73,6 +75,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   backBtnText: {
-    paddingHorizontal: responsiveHeight(3),
+    // paddingHorizontal: responsiveHeight(3),
+    paddingHorizontal: hp(3),
   },
 });
