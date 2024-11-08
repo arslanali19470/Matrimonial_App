@@ -1,17 +1,18 @@
-import { StatusBar, StyleSheet, Text, View, } from 'react-native'
+import { StatusBar, StyleSheet, Text, TouchableOpacity, View, } from 'react-native'
 import React, { useCallback, useMemo, useRef, useState } from 'react';
-// import { styles } from './styles';
 import Picture from '../../components/customComponents/Picture';
-import { Board1, Chat, Heart, NavigationPic, Profile } from '../../assets';
+import { Board1, Chat, Heart, MatchIcon, NavigationPic, Profile } from '../../assets';
 import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
 import Heading from '../../components/customComponents/Heading';
 import { GrayBG, TRANSPARENT, WHITE } from '../../utils/colors';
 import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
-import BottomView from './BottomView';
 import { hp, wp } from '../../utils/responsive';
+import BottomView from '../../components/BottomView';
+import { useNavigation } from '@react-navigation/native';
 
 const Home = () => {
-    const [index, setIndex] = useState(1); // State for storing index
+    const [index, setIndex] = useState(1);
+    const navigation = useNavigation();
 
     const bottomSheetRef = useRef(null);
     const snapPoints = useMemo(() => ['25%', '25%', '96%'], []);
@@ -28,34 +29,40 @@ const Home = () => {
         <View>
             <StatusBar translucent backgroundColor={TRANSPARENT}
                 barStyle={'dark-content'} />
-            <View style={{ flexDirection: "row", justifyContent: "space-between", backgroundColor: "#d4d4d4", padding: 5, paddingTop: 35 }}>
+            <View style={{ flexDirection: "row", justifyContent: "space-between", backgroundColor: "#d4d4d4", paddingBottom: 5, paddingHorizontal: 7, paddingTop: 35, }}>
                 <View style={{ flexDirection: "row", gap: 10 }}>
                     <Picture
                         localSource={Profile}
-                        height={responsiveHeight(7)}
-                        width={responsiveWidth(15)}
+                        height={hp(7)}
+                        width={wp(15)}
                     />
                     <View style={{ justifyContent: "center" }}>
                         <Heading text={"Welcome"} fontSize={1.9} fontFamily={"RobotoCondensed-Regular"} />
                         <Heading text={"John Doe 👋 "} fontFamily={"RobotoCondensed-ExtraBold"} fontSize={2.8} marginTop={-.5} />
                     </View>
                 </View>
-                <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center", gap: 10 }}>
-                    <Picture
-                        localSource={Heart}
-                        height={responsiveHeight(3.1)}
-                        width={responsiveWidth(7)}
-                    />
-                    <Picture
-                        localSource={Chat}
-                        height={responsiveHeight(3)}
-                        width={responsiveWidth(7)}
-                    />
-                    <Picture
-                        localSource={NavigationPic}
-                        height={responsiveHeight(3)}
-                        width={responsiveWidth(7)}
-                    />
+                <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center", gap: 10, }}>
+                    <TouchableOpacity onPress={() => navigation.navigate("RequestScreen")}>
+                        <Picture
+                            localSource={Heart}
+                            height={hp(2.7)}
+                            width={wp(6)}
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate("MatchScreen")}>
+                        <Picture
+                            localSource={MatchIcon}
+                            height={hp(3.5)}
+                            width={wp(7)}
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate("MessageScreen")}>
+                        <Picture
+                            localSource={Chat}
+                            height={hp(3)}
+                            width={wp(7)}
+                        />
+                    </TouchableOpacity>
 
                 </View>
 
@@ -64,8 +71,8 @@ const Home = () => {
             <View>
                 <Picture
                     localSource={Board1}
-                    height={responsiveHeight(100)}
-                    width={responsiveWidth(100)}
+                    height={hp(100)}
+                    width={wp(100)}
                 />
             </View>
 
@@ -96,16 +103,12 @@ export default Home;
 
 const styles = StyleSheet.create({
 
-    // Apply border radius and background color to the BottomSheet's background
     bottomSheetBackground: {
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
-        // backgroundColor: WHITE,
         backgroundColor: GrayBG,
-
         overflow: 'hidden',
     },
-    // Wrapper around BottomSheetView for rounded corners
     bottomSheetContentWrapper: {
         flex: 1,
         borderTopLeftRadius: 18,
@@ -113,15 +116,12 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
         marginTop: hp(-2)
     },
-    // Inner content of the BottomSheet
     bottomSheetContent: {
-        // backgroundColor: 'green',
         backgroundColor: GrayBG,
         padding: 20,
     },
     text: {
         fontSize: 18,
-        // color: 'white',
     },
 
 

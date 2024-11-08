@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import Space from '../customComponents/Space'
-import Heading from '../customComponents/Heading'
+import Space from './Space'
+import Heading from './Heading'
 import { Yellowish } from '../../utils/colors'
 import { fp, wp } from '../../utils/responsive'
 

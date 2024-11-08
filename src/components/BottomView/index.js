@@ -6,13 +6,14 @@ import Picture from '../../components/customComponents/Picture'
 import { responsiveWidth } from 'react-native-responsive-dimensions'
 import { PURPLE, SubHeadText, WHITE } from '../../utils/colors'
 import Space from '../../components/customComponents/Space'
-import UnderLine from '../../components/UnderLine'
-import UnderHeading from '../../components/UnderHeading'
+// import UnderLine from '../UnderLine/UnderLine'
+import UnderHeading from '../customComponents/UnderHeading'
 import { hp, wp } from '../../utils/responsive'
 import SubHeading from '../../components/customComponents/SubHeading'
 import SubDetails from '../../components/customComponents/SubDetails'
 import BtnSendRequest from '../../components/BtnSendRequest'
 import { BlurView, } from "@react-native-community/blur";
+import UnderLine from '../customComponents/UnderLine'
 
 const BottomView = ({ index }) => {
     return (

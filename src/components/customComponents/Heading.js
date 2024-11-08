@@ -1,12 +1,7 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { responsiveHeight, responsiveFontSize, multiThemeColor } from '../../utils/constant';
+import { multiThemeColor } from '../../utils/constant';
 import { fp, hp } from '../../utils/responsive';
 
 const Heading = ({
@@ -15,7 +10,7 @@ const Heading = ({
   color,
   fontFamily,
   weight,
-  fontSize,
+  fontSize = 2.5,
   backBtn = false,
   marginLeft = 0,
   marginTop = 0,
@@ -27,43 +22,33 @@ const Heading = ({
 }) => {
   const navigation = useNavigation();
 
+  // Construct the heading style dynamically
   const headingStyle = {
     textAlign,
-    fontSize: fp(fontSize) || fp(2.5),
+    fontSize: fp(fontSize),
     fontWeight: weight,
     color: color || multiThemeColor().textcolor,
-    fontFamily: fontFamily,
-
+    fontFamily,
     marginLeft: hp(marginLeft),
     marginTop: hp(marginTop),
     marginBottom: hp(marginBottom),
     paddingBottom: hp(paddingBottom),
-
     ...style,
   };
 
   return (
-    <>
-      {!backBtn ? (
-        // Wrap Text in TouchableOpacity for pressability
-        <TouchableOpacity onPress={onPress}>
-          <Text style={headingStyle} {...restProps}>
-            {text}
-          </Text>
+    <View style={[styles.container, backBtn && styles.backBtnContainer]}>
+      {backBtn && (
+        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>
+          {/* Optional icon or back button text can go here */}
         </TouchableOpacity>
-      ) : (
-        <View style={styles.container}>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            {/* Optional icon or back button text can go here */}
-          </TouchableOpacity>
-          <TouchableOpacity onPress={onPress}>
-            <Text style={[headingStyle, styles.backBtnText]} {...restProps}>
-              {text}
-            </Text>
-          </TouchableOpacity>
-        </View>
       )}
-    </>
+      <TouchableOpacity onPress={onPress} disabled={!onPress}>
+        <Text style={headingStyle} {...restProps}>
+          {text}
+        </Text>
+      </TouchableOpacity>
+    </View>
   );
 };
 
@@ -74,8 +59,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  backBtnText: {
-    // paddingHorizontal: responsiveHeight(3),
+  backBtnContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  backBtn: {
     paddingHorizontal: hp(3),
   },
 });
