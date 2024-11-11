@@ -2,24 +2,22 @@ import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-nati
 import React, { useState } from 'react'
 import { hp, wp } from '../../utils/responsive'
 import Picture from '../customComponents/Picture'
-import { DoubleCheck, Pakistan, Req1, Req3, Req4, Req5, RequestBlack, Varified, WhiteCross } from '../../assets'
-import { BLACK, PURPLE, WHITE } from '../../utils/colors'
+import { DoubleCheck, Pakistan, RequestBlack, Varified, WhiteCross } from '../../assets'
+import { PURPLE, WHITE } from '../../utils/colors'
 import Heading from '../customComponents/Heading'
 import Space from '../customComponents/Space'
 
 const CardList = ({ listName }) => {
-    // const RequestNumbers = [Req5, Req1, Req3, Req5];
-    // const PendingNumber = [Req1, Req3, Req4, Req5];
-    const [activeTab, setActiveTab] = useState(0);
     return (
         <View >
+            <Space height={2} />
             {listName.map((item, ind) =>
                 <View style={styles.requestItem} key={ind}>
                     <Picture
                         localSource={item}
                         height={hp(40)}
                         width={wp(100)}
-                        top={0}
+                        top={-hp(1)}
                         left={-wp(3)}
                     />
                     <Picture
@@ -96,7 +94,8 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         alignSelf: "flex-end",
-        position: "absolute"
+        position: "absolute",
+        top: hp(-1)
     },
     verifiedBadge: {
         backgroundColor: "white",

@@ -7,51 +7,25 @@ import { hp, wp } from '../../utils/responsive'
 import { GRAYTEXT, PURPLE, TRANSPARENT, WHITE } from '../../utils/colors'
 import Heading from '../../components/customComponents/Heading'
 import Space from '../../components/customComponents/Space'
-import { useNavigation } from '@react-navigation/native'
 import { ImagesList, PendingNumber } from '../../utils/data'
 import CardList from '../../components/CardList'
+import TopHeader from '../../components/TopHeader'
 
 
-const MatchScreen = () => {
-    const navigate = useNavigation();
+const MatchScreen = ({ navigation }) => {
     const [activeTab, setActiveTab] = useState(0);
     return (
         <View style={styles.container}>
-            <StatusBar translucent backgroundColor={TRANSPARENT}
-                barStyle={'dark-content'} />
-            <View style={styles.BgTopBox}>
-                <View style={styles.rowCenterSpaceBetween}>
-                    <TouchableOpacity onPress={() => navigate.goBack()}>
-                        <Picture
-                            localSource={BackIcon}
-                            height={hp(2.5)}
-                            width={wp(3)}
-                        />
-                    </TouchableOpacity>
-                    <Heading text={"Matches"} fontFamily={"RobotoCondensed-SemiBold"} marginLeft={wp(1.5)} />
-                    <View style={styles.rowCenterSpaceCenter}>
-                        <TouchableOpacity>
-                            <Picture
-                                localSource={MatchIcon}
-                                height={hp(3.2)}
-                                width={wp(6.4)}
-                            />
-                        </TouchableOpacity>
+            <TopHeader
+                leftIcon={BackIcon}
+                title="Requests"
+                RightIcon={MatchIcon}
+                RightIcon2={SearchIcon}
+                statusColor="dark"
+                border={true}
+                onPressLeft={() => navigation.goBack()}
+            />
 
-                        <TouchableOpacity>
-                            <Picture
-                                localSource={SearchIcon}
-                                height={hp(2.8)}
-                                width={wp(8.5)}
-                            />
-                        </TouchableOpacity>
-                    </View>
-                </View>
-                {/* <Space height={3} /> */}
-            </View>
-            <View style={styles.Border} />
-
-            {/* <RequestCard Match={true} /> */}
             <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollView}>
                 <View style={styles.containerTab}>
                     {/* Tab 1 */}

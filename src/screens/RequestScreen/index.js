@@ -1,58 +1,26 @@
 import React from 'react'
 import { ScrollView, StatusBar, StyleSheet, TouchableOpacity, View } from 'react-native'
-import { SafeAreaView } from 'react-native-safe-area-context'
 import { BackIcon, MatchIcon, SearchIcon } from '../../assets'
-import Picture from '../../components/customComponents/Picture'
 import { hp, wp } from '../../utils/responsive'
-import { BLACK, GRAYTEXT, TRANSPARENT, WHITE } from '../../utils/colors'
+import { BLACK, GRAYTEXT, WHITE } from '../../utils/colors'
 import Heading from '../../components/customComponents/Heading'
-import UnderLine from '../../components/customComponents/UnderLine'
 import Space from '../../components/customComponents/Space'
-import RequestCard from '../../components/RequestCard'
-import { useNavigation } from '@react-navigation/native'
 import CardList from '../../components/CardList'
 import { ImagesList } from '../../utils/data'
+import TopHeader from '../../components/TopHeader'
 
 
-const RequestScreen = () => {
-    const navigate = useNavigation();
+const RequestScreen = ({ navigation }) => {
     return (
         <View style={styles.container}>
-            <StatusBar translucent backgroundColor={TRANSPARENT}
-                barStyle={'dark-content'} />
-            <View style={styles.BgTopBox}>
-                <View style={styles.rowCenterSpaceBetween}>
-                    <TouchableOpacity onPress={() => navigate.goBack()}>
-                        <Picture
-                            localSource={BackIcon}
-                            height={hp(2.5)}
-                            width={wp(3)}
-                        />
-                    </TouchableOpacity>
-                    <Heading text={"Requests"} fontFamily={"RobotoCondensed-SemiBold"} marginLeft={wp(1.5)} />
-                    <View style={styles.rowCenterSpaceCenter}>
-                        <TouchableOpacity>
-                            <Picture
-                                localSource={MatchIcon}
-                                height={hp(3.2)}
-                                width={wp(6.4)}
-                            />
-                        </TouchableOpacity>
-
-                        <TouchableOpacity>
-                            <Picture
-                                localSource={SearchIcon}
-                                height={hp(2.8)}
-                                width={wp(8.5)}
-                            />
-                        </TouchableOpacity>
-                    </View>
-                </View>
-                {/* <Space height={3} /> */}
-            </View>
-            <View style={styles.Border} />
-
-            {/* <RequestCard Request={true} /> */}
+            <TopHeader
+                leftIcon={BackIcon}
+                title="Requests"
+                RightIcon={MatchIcon}
+                RightIcon2={SearchIcon}
+                statusColor="dark"
+                onPressLeft={() => navigation.goBack()}
+            />
 
             <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollView}>
                 <View style={styles.RequestBox}>
@@ -82,7 +50,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: wp(5),
         paddingTop: hp(6),
         paddingBottom: hp(3),
-        // backgroundColor: "red"
     },
     rowCenterSpaceCenter: {
         flexDirection: "row",
@@ -94,7 +61,6 @@ const styles = StyleSheet.create({
         backgroundColor: WHITE
     },
     Border: {
-        // backgroundColor: "green",
         backgroundColor: GRAYTEXT,
         height: 1,
         width: hp(100)
@@ -103,6 +69,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: wp(3),
     },
     RequestBox: {
-        paddingLeft: wp(1)
+        paddingLeft: wp(1),
     }
 })

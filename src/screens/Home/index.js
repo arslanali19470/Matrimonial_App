@@ -1,8 +1,7 @@
 import { StatusBar, StyleSheet, Text, TouchableOpacity, View, } from 'react-native'
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import Picture from '../../components/customComponents/Picture';
-import { Board1, Chat, Heart, MatchIcon, NavigationPic, Profile } from '../../assets';
-import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
+import { Board1, Chat, Heart, MatchIcon, Profile } from '../../assets';
 import Heading from '../../components/customComponents/Heading';
 import { GrayBG, TRANSPARENT, WHITE } from '../../utils/colors';
 import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
@@ -30,7 +29,7 @@ const Home = () => {
             <StatusBar translucent backgroundColor={TRANSPARENT}
                 barStyle={'dark-content'} />
             <View style={{ flexDirection: "row", justifyContent: "space-between", backgroundColor: "#d4d4d4", paddingBottom: 5, paddingHorizontal: 7, paddingTop: 35, }}>
-                <View style={{ flexDirection: "row", gap: 10 }}>
+                <TouchableOpacity style={{ flexDirection: "row", gap: 10, }} onPress={() => navigation.navigate("ProfileScreen")}>
                     <Picture
                         localSource={Profile}
                         height={hp(7)}
@@ -40,7 +39,7 @@ const Home = () => {
                         <Heading text={"Welcome"} fontSize={1.9} fontFamily={"RobotoCondensed-Regular"} />
                         <Heading text={"John Doe 👋 "} fontFamily={"RobotoCondensed-ExtraBold"} fontSize={2.8} marginTop={-.5} />
                     </View>
-                </View>
+                </TouchableOpacity>
                 <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center", gap: 10, }}>
                     <TouchableOpacity onPress={() => navigation.navigate("RequestScreen")}>
                         <Picture

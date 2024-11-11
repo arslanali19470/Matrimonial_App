@@ -12,5 +12,6 @@ export const BLUE = "#0F629E";
 export const MessageBG = "#f3f5f6";
 export const TimeTextColor = "#9EA3AE";
 
+// #f8f4f4
 
 

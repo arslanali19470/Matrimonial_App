@@ -8,21 +8,25 @@ import Button from '../../components/customComponents/Button';
 import { MaterialIcons } from '../../utils/constant';
 import { styles } from './styles';
 import { GRAYTEXT, PURPLE, TRANSPARENT, WHITE } from '../../utils/colors';
+import { hp, wp } from '../../utils/responsive';
 
 const OnBoardRenderItem = ({ item, currentIndex, OnBoardData, goToNextSlide, setshowHomePage }) => {
     return (
         <View style={styles.mainBackground}>
+            <StatusBar backgroundColor={TRANSPARENT}
+            />
             <StatusBar translucent backgroundColor={TRANSPARENT}
                 barStyle={currentIndex == 1 ? 'dark-content' : 'light-content'} />
+            {/* <StatusBar hidden={true} /> */}
             <Picture
                 localSource={item.BackgroundImage}
-                height={responsiveHeight(100)}
-                width={responsiveWidth(100)}
+                height={hp(100)}
+                width={wp(100)}
             />
             <Picture
                 localSource={item.DarkShad}
-                height={responsiveHeight(75)}
-                width={responsiveWidth(100)}
+                height={hp(75)}
+                width={wp(100)}
                 position="absolute"
                 bottom={0}
             />
@@ -31,8 +35,8 @@ const OnBoardRenderItem = ({ item, currentIndex, OnBoardData, goToNextSlide, set
                     styles.descriptionBox,
                     {
                         top: currentIndex === OnBoardData.length - 1
-                            ? responsiveHeight(64)
-                            : responsiveHeight(60),
+                            ? hp(64)
+                            : hp(60),
                     },
                 ]}
             >
@@ -50,7 +54,7 @@ const OnBoardRenderItem = ({ item, currentIndex, OnBoardData, goToNextSlide, set
                     textAlign="center"
                     color={GRAYTEXT}
                     fontFamily="RobotoCondensed-Regular"
-                    style={{ paddingHorizontal: responsiveWidth(10), paddingVertical: responsiveHeight(.5), lineHeight: 24 }}
+                    style={styles.descriptionHead}
                 />
                 <Space height={7} />
 
@@ -63,21 +67,14 @@ const OnBoardRenderItem = ({ item, currentIndex, OnBoardData, goToNextSlide, set
                             onPress={goToNextSlide}
                         />
                         <Space height={2} />
-                        <Heading
-                            text="Skip"
-                            weight={400}
-                            fontSize={2.4}
-                            textAlign="center"
-                            color={WHITE}
-                            onPress={() => setshowHomePage(true)}
-                        />
+
                     </>
 
                 )}
 
                 {currentIndex == OnBoardData.length - 1 && (
                     <TouchableOpacity style={styles.ButtonMainstyle} onPress={() => setshowHomePage(true)}>
-                        <Heading text={"Get Started"} color={WHITE} onPress={() => setshowHomePage(true)} />
+                        <Heading text={"Get Started"} color={WHITE} />
                         <View style={styles.BtnRoundIcon}>
                             <View style={{ alignItems: 'center' }}>
                                 <MaterialIcons name="east" color={PURPLE} size={25} />

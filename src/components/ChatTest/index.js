@@ -1,16 +1,12 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { View, StatusBar, TouchableOpacity, Text, TextInput } from 'react-native';
+import { View, Text } from 'react-native';
 import { GiftedChat, Bubble, InputToolbar, Send } from 'react-native-gifted-chat';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { Person1, BackIcon, emoji, send, emojiIcon, sendIcon, micIcon } from '../../assets';
-import { hp, wp } from '../../utils/responsive';
-import Picture from '../../components/customComponents/Picture';
-import Heading from '../../components/customComponents/Heading';
+import { Person1, } from '../../assets';
+import { wp } from '../../utils/responsive';
 import styles from './styles';
-import { BLUE, TRANSPARENT } from '../../utils/colors';
 
-const ChatScreen = ({ route, navigation }) => {
-    const { item } = route.params;
+const ChatTest = ({ }) => {
     const [messages, setMessages] = useState([]);
 
 
@@ -67,7 +63,7 @@ const ChatScreen = ({ route, navigation }) => {
                 />
                 <View style={styles.footerContainer}>
                     {currentMessage.user._id === currentUserId && (
-                        <Icon name="done-all" size={16} color={BLUE} style={styles.tickIcon} />
+                        <Icon name="done-all" size={16} color="#007AFF" style={styles.tickIcon} />
                     )}
 
                     <Text
@@ -89,62 +85,18 @@ const ChatScreen = ({ route, navigation }) => {
     const renderSend = (props) => (
         <Send {...props}>
             <View style={styles.sendButton}>
-                <Icon name="send" size={24} color={BLUE} />
+                <Icon name="send" size={24} color="#007AFF" />
             </View>
         </Send>
     );
 
-
-    const renderInputToolbar = (props) => {
-        const handleSendMessage = () => {
-            if (props.text.trim()) {
-                props.onSend({ text: props.text.trim() }, true);
-            }
-        };
-
-        return (
-            <View style={styles.inputToolbarContainer}>
-                <View style={styles.inputContainer}>
-                    <Picture localSource={emojiIcon} height={hp(4)} width={wp(7)} />
-                    <TextInput
-                        style={styles.textInput}
-                        placeholder="Enter Message"
-                        placeholderTextColor="#555"
-                        multiline
-                        onChangeText={(text) => props.onTextChanged(text)}
-                        value={props.text}
-                    />
-                    <TouchableOpacity onPress={handleSendMessage}>
-                        <Picture localSource={sendIcon} height={hp(4)} width={wp(7)} />
-                    </TouchableOpacity>
-                </View>
-
-                <TouchableOpacity style={styles.micButton}>
-                    <Picture localSource={micIcon} height={hp(3.3)} width={wp(5)} />
-                </TouchableOpacity>
-            </View>
-        );
-    };
-
+    const renderInputToolbar = (props) => (
+        <InputToolbar {...props} containerStyle={styles.inputToolbar} />
+    );
 
     return (
-        <View style={styles.container}>
-            <StatusBar translucent backgroundColor={TRANSPARENT} barStyle="dark-content" />
-            <View style={styles.header}>
-                <TouchableOpacity onPress={() => navigation.goBack()}>
-                    <Picture localSource={BackIcon} height={hp(2.5)} width={wp(2.7)} />
-                </TouchableOpacity>
-                <View style={styles.centerContainer}>
-                    <Picture localSource={item.Profiler} height={hp(4.4)} width={wp(9)} style={styles.midImage} />
-                    <Heading
-                        text={item.name}
-                        fontFamily="RobotoCondensed-SemiBold"
-                        style={styles.title}
-                        color="black"
-                    />
-                </View>
-            </View>
-            <View style={styles.divider} />
+
+        <View style={{ flex: 1 }}>
             <GiftedChat
                 messages={messages}
                 onSend={onSend}
@@ -157,4 +109,4 @@ const ChatScreen = ({ route, navigation }) => {
     );
 };
 
-export default ChatScreen;
+export default ChatTest;

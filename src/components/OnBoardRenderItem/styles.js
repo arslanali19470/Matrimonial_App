@@ -11,8 +11,15 @@ export const styles = StyleSheet.create({
         width: wp(100),
     },
     mainHeading: {
-        paddingHorizontal: 20,
+        paddingHorizontal: wp(15),
+        width: wp(100),
     },
+    descriptionHead: {
+        paddingHorizontal: wp(10),
+        paddingVertical: hp(.5),
+        lineHeight: 24
+    },
+
     ButtonMainstyle: {
         backgroundColor: PURPLE,
         height: hp(7.5),

@@ -4,34 +4,48 @@ import RequestScreen from '../../screens/RequestScreen';
 import MatchScreen from '../../screens/MatchScreen';
 import MessageScreen from '../../screens/MessageScreen';
 import ChatScreen from '../../screens/ChatScreen';
+import ProfileScreen from '../../screens/ProfileScreen';
+import Home from '../../screens/Home';
+// import { StatusBar } from 'react-native';
 
 const Stack = createStackNavigator();
 
 const MianNavigation = () => {
     return (
-        <Stack.Navigator initialRouteName="OnBoarding">
+        <>
+            {/* <StatusBar hidden={true} /> */}
+            <Stack.Navigator initialRouteName="OnBoarding">
 
-            <Stack.Screen name="OnBoarding" component={OnBoarding}
-                options={{
-                    headerShown: false,
-                }} />
-            <Stack.Screen name="RequestScreen" component={RequestScreen}
-                options={{
-                    headerShown: false,
-                }} />
-            <Stack.Screen name="MatchScreen" component={MatchScreen}
-                options={{
-                    headerShown: false,
-                }} />
-            <Stack.Screen name="MessageScreen" component={MessageScreen}
-                options={{
-                    headerShown: false,
-                }} />
-            <Stack.Screen name="ChatScreen" component={ChatScreen}
-                options={{
-                    headerShown: false,
-                }} />
-        </Stack.Navigator>
+                <Stack.Screen name="OnBoarding" component={OnBoarding}
+                    options={{
+                        headerShown: false,
+                    }} />
+                <Stack.Screen name="Home" component={Home}
+                    options={{
+                        headerShown: false,
+                    }} />
+                <Stack.Screen name="RequestScreen" component={RequestScreen}
+                    options={{
+                        headerShown: false,
+                    }} />
+                <Stack.Screen name="MatchScreen" component={MatchScreen}
+                    options={{
+                        headerShown: false,
+                    }} />
+                <Stack.Screen name="MessageScreen" component={MessageScreen}
+                    options={{
+                        headerShown: false,
+                    }} />
+                <Stack.Screen name="ChatScreen" component={ChatScreen}
+                    options={{
+                        headerShown: false,
+                    }} />
+                <Stack.Screen name="ProfileScreen" component={ProfileScreen}
+                    options={{
+                        headerShown: false,
+                    }} />
+            </Stack.Navigator>
+        </>
     )
 }
 
