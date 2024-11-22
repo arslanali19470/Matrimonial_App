@@ -6,21 +6,32 @@ import MessageScreen from '../../screens/MessageScreen';
 import ChatScreen from '../../screens/ChatScreen';
 import ProfileScreen from '../../screens/ProfileScreen';
 import Home from '../../screens/Home';
-// import { StatusBar } from 'react-native';
+import ProfileView from '../../screens/ProfileView';
+import ThemeScreen from '../../screens/ThemeScreen';
+import TermsScreen from '../../screens/TermsScreen';
+import LoginScreen from '../../screens/LoginScreen';
+import EditProfile from '../../screens/EditProfile';
 
 const Stack = createStackNavigator();
 
 const MianNavigation = () => {
     return (
         <>
-            {/* <StatusBar hidden={true} /> */}
-            <Stack.Navigator initialRouteName="OnBoarding">
+            <Stack.Navigator initialRouteName="LoginScreen">
 
                 <Stack.Screen name="OnBoarding" component={OnBoarding}
                     options={{
                         headerShown: false,
                     }} />
+                <Stack.Screen name="LoginScreen" component={LoginScreen}
+                    options={{
+                        headerShown: false,
+                    }} />
                 <Stack.Screen name="Home" component={Home}
+                    options={{
+                        headerShown: false,
+                    }} />
+                <Stack.Screen name="ProfileView" component={ProfileView}
                     options={{
                         headerShown: false,
                     }} />
@@ -41,6 +52,19 @@ const MianNavigation = () => {
                         headerShown: false,
                     }} />
                 <Stack.Screen name="ProfileScreen" component={ProfileScreen}
+                    options={{
+                        headerShown: false,
+                    }} />
+
+                <Stack.Screen name="ThemeScreen" component={ThemeScreen}
+                    options={{
+                        headerShown: false,
+                    }} />
+                <Stack.Screen name="TermsScreen" component={TermsScreen}
+                    options={{
+                        headerShown: false,
+                    }} />
+                <Stack.Screen name="EditProfile" component={EditProfile}
                     options={{
                         headerShown: false,
                     }} />

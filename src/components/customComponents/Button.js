@@ -23,7 +23,8 @@ const Button = ({
     fontWeight,
     txtmarginLeft,
     disabled,
-    borderRadius
+    borderRadius,
+    fontSize
 }) => {
     const buttonStyle = {
         // height: responsiveHeight(height) || responsiveHeight(7.5),
@@ -32,6 +33,7 @@ const Button = ({
         width: wp(width) || wp(90),
         borderRadius: 4,
         alignSelf: alignSelf || 'center',
+        fontSize: fontSize,
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'row',
@@ -59,7 +61,8 @@ const Button = ({
                     fontWeight: fontWeight || 'bold',
                     marginLeft: txtmarginLeft || 0,
                     // fontSize: responsiveFontSize(2.6),
-                    fontSize: fp(2.6),
+                    // fontSize: fp(2.6),
+                    fontSize: fontSize || fp(2.6),
                 }}
             >
                 {title}

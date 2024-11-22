@@ -9,14 +9,15 @@ import { MaterialIcons } from '../../utils/constant';
 import { styles } from './styles';
 import { GRAYTEXT, PURPLE, TRANSPARENT, WHITE } from '../../utils/colors';
 import { hp, wp } from '../../utils/responsive';
+import IconButton from '../IconButton';
 
 const OnBoardRenderItem = ({ item, currentIndex, OnBoardData, goToNextSlide, setshowHomePage }) => {
     return (
         <View style={styles.mainBackground}>
-            <StatusBar backgroundColor={TRANSPARENT}
-            />
+            {/* <StatusBar backgroundColor={TRANSPARENT}
+            /> */}
             <StatusBar translucent backgroundColor={TRANSPARENT}
-                barStyle={currentIndex == 1 ? 'dark-content' : 'light-content'} />
+                barStyle={currentIndex == 1 ? 'dark-content' : 'light-content'} hidden={false} />
             {/* <StatusBar hidden={true} /> */}
             <Picture
                 localSource={item.BackgroundImage}
@@ -73,16 +74,15 @@ const OnBoardRenderItem = ({ item, currentIndex, OnBoardData, goToNextSlide, set
                 )}
 
                 {currentIndex == OnBoardData.length - 1 && (
-                    <TouchableOpacity style={styles.ButtonMainstyle} onPress={() => setshowHomePage(true)}>
-                        <Heading text={"Get Started"} color={WHITE} />
-                        <View style={styles.BtnRoundIcon}>
-                            <View style={{ alignItems: 'center' }}>
-                                <MaterialIcons name="east" color={PURPLE} size={25} />
-                            </View>
-                        </View>
-
-
-                    </TouchableOpacity>
+                    // <TouchableOpacity style={styles.ButtonMainstyle} onPress={() => setshowHomePage(true)}>
+                    //     <Heading text={"Get Started"} color={WHITE} />
+                    //     <View style={styles.BtnRoundIcon}>
+                    //         <View style={{ alignItems: 'center' }}>
+                    //             <MaterialIcons name="east" color={PURPLE} size={25} />
+                    //         </View>
+                    //     </View>
+                    // </TouchableOpacity>
+                    <IconButton onPress={() => setshowHomePage(true)} />
                 )}
             </View>
         </View>

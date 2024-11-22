@@ -16,8 +16,10 @@ const Heading = ({
   marginTop = 0,
   marginBottom = 0,
   paddingBottom = 0,
+  lineHeight,
   style = {},
   onPress,
+
   ...restProps
 }) => {
   const navigation = useNavigation();
@@ -33,6 +35,7 @@ const Heading = ({
     marginTop: hp(marginTop),
     marginBottom: hp(marginBottom),
     paddingBottom: hp(paddingBottom),
+    lineHeight,
     ...style,
   };
 

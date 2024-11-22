@@ -1,33 +1,110 @@
-import { StatusBar, StyleSheet, Text, TouchableOpacity, View, } from 'react-native'
 import React, { useCallback, useMemo, useRef, useState } from 'react';
-import Picture from '../../components/customComponents/Picture';
-import { Board1, Chat, Heart, MatchIcon, Profile } from '../../assets';
-import Heading from '../../components/customComponents/Heading';
-import { GrayBG, TRANSPARENT, WHITE } from '../../utils/colors';
+import {
+    FlatList,
+    ImageBackground,
+    StatusBar,
+    TouchableOpacity,
+    View,
+} from 'react-native';
 import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
-import { hp, wp } from '../../utils/responsive';
+
+import Picture from '../../components/customComponents/Picture';
+import Heading from '../../components/customComponents/Heading';
 import BottomView from '../../components/BottomView';
-import { useNavigation } from '@react-navigation/native';
 
-const Home = () => {
-    const [index, setIndex] = useState(1);
-    const navigation = useNavigation();
+import { Chat, Heart, MatchIcon, Profile, } from '../../assets';
+import { TRANSPARENT, WHITE } from '../../utils/colors';
+import { hp, wp } from '../../utils/responsive';
+import { styles } from './styles';
+import { MaterialIcons } from '../../utils/constant';
+import { profiles } from '../../utils/data';
 
+const Home = ({ navigation }) => {
+    const [index, setIndex] = useState(0);
     const bottomSheetRef = useRef(null);
-    const snapPoints = useMemo(() => ['25%', '25%', '96%'], []);
+    const snapPoints = useMemo(() => ['22%', '22%', '96%'], []);
+    const [Thumbnail, setThumbnail] = useState(true)
+
     const handleSheetChanges = useCallback((index) => {
-        console.log('handleSheetChanges', index);
-        if (index === 0) {
-            bottomSheetRef.current?.snapToIndex(1);
-        }
-        setIndex(index);
+        if (index === 0) bottomSheetRef.current?.snapToIndex(1);
     }, []);
 
 
+    // Change Name :
+    const onViewableItemsChanged = useCallback(({ viewableItems }) => {
+        if (viewableItems.length > 0) {
+            const newIndex = viewableItems[0].index;
+            setIndex(newIndex);
+            setCurrentImageIndex(0);// always goes to top white box 
+        }
+    }, []);
+
+
+    //Change Border Of Image Thumbnail
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const onViewableVerticalItemsChanged = useCallback(({ viewableItems }) => {
+        if (viewableItems.length > 0) {
+            const visibleIndex = viewableItems[0].index;
+            setCurrentImageIndex(visibleIndex);
+        }
+    }, []);
+
+
+    const renderVerticalImages = ({ item: image, name, smallThumbnail }) => (
+        <ImageBackground source={image} style={styles.background} resizeMode="cover">
+            <View>
+                <View style={[styles.containerView, { marginLeft: Thumbnail ? -wp(55) : -wp(70) }]}>
+                    <TouchableOpacity
+                        style={styles.toggleButton}
+                        onPress={() => setThumbnail(!Thumbnail, console.log(Thumbnail))}
+                    >
+                        {Thumbnail ? <MaterialIcons name="keyboard-double-arrow-left" color={WHITE} size={20} style={{ marginLeft: 0 }} /> :
+                            <MaterialIcons name="keyboard-double-arrow-right" color={WHITE} size={20} style={{ marginLeft: 10 }} />}
+                    </TouchableOpacity>
+
+                    {smallThumbnail.map((img, idx) => (
+                        <TouchableOpacity
+                            key={idx}
+                            style={[
+                                styles.thumbnailImage,
+                                { borderColor: currentImageIndex === idx ? "white" : "transparent", opacity: currentImageIndex === idx ? 1 : .7, },
+                            ]}
+                            onPress={() => navigation.navigate("ProfileView")}
+                        >
+                            <Picture localSource={img} height={hp(7)} width={wp(12)} opacity={1} />
+                        </TouchableOpacity>
+                    ))}
+                </View>
+            </View>
+        </ImageBackground>
+    );
+
+    const renderHorizontalProfiles = ({ item }) => (
+        <FlatList
+            data={item.images}
+            renderItem={({ item: image }) => renderVerticalImages({
+                item: image,
+                name: item.name,
+                smallThumbnail: profiles[index].smallThumbnail
+
+            })}
+            keyExtractor={(image, idx) => `${item.id}-${idx}`}
+            pagingEnabled
+            showsVerticalScrollIndicator={false}
+            onViewableItemsChanged={onViewableVerticalItemsChanged}
+            snapToInterval={hp(100)}
+            snapToAlignment="start"
+            decelerationRate="fast"
+        />
+    );
+
+
     return (
-        <View>
-            <StatusBar translucent backgroundColor={TRANSPARENT}
-                barStyle={'dark-content'} />
+        <View
+            style={styles.container}
+        >
+            <StatusBar translucent backgroundColor={TRANSPARENT} barStyle="dark-content" />
+
             <View style={{ flexDirection: "row", justifyContent: "space-between", backgroundColor: "#d4d4d4", paddingBottom: 5, paddingHorizontal: 7, paddingTop: 35, }}>
                 <TouchableOpacity style={{ flexDirection: "row", gap: 10, }} onPress={() => navigation.navigate("ProfileScreen")}>
                     <Picture
@@ -67,13 +144,16 @@ const Home = () => {
 
             </View>
 
-            <View>
-                <Picture
-                    localSource={Board1}
-                    height={hp(100)}
-                    width={wp(100)}
-                />
-            </View>
+            <FlatList
+                data={profiles}
+                renderItem={renderHorizontalProfiles}
+                keyExtractor={item => item.id}
+                horizontal
+                pagingEnabled
+                showsHorizontalScrollIndicator={false}
+                onViewableItemsChanged={onViewableItemsChanged}
+                viewabilityConfig={{ viewAreaCoveragePercentThreshold: 50 }}
+            />
 
             <BottomSheet
                 ref={bottomSheetRef}
@@ -81,49 +161,15 @@ const Home = () => {
                 snapPoints={snapPoints}
                 onChange={handleSheetChanges}
                 enableOverDrag={false}
-                handleIndicatorStyle={{ backgroundColor: '#cccc', width: wp(15) }}
-
+                handleIndicatorStyle={styles.bottomSheetIndicator}
                 backgroundStyle={styles.bottomSheetBackground}
             >
-                <View style={styles.bottomSheetContentWrapper}>
-                    <BottomSheetView style={styles.bottomSheetContent}>
-                        <View>
-                            <BottomView index={index} />
-                        </View>
-                    </BottomSheetView>
-                </View>
+                <BottomSheetView style={styles.bottomSheetContent}>
+                    <BottomView smallButton={true} profileName={profiles[index]?.name} snapPoints={snapPoints} />
+                </BottomSheetView>
             </BottomSheet>
         </View>
-    )
-}
+    );
+};
 
 export default Home;
-
-
-const styles = StyleSheet.create({
-
-    bottomSheetBackground: {
-        borderTopLeftRadius: 30,
-        borderTopRightRadius: 30,
-        backgroundColor: GrayBG,
-        overflow: 'hidden',
-    },
-    bottomSheetContentWrapper: {
-        flex: 1,
-        borderTopLeftRadius: 18,
-        borderTopRightRadius: 18,
-        overflow: 'hidden',
-        marginTop: hp(-2)
-    },
-    bottomSheetContent: {
-        backgroundColor: GrayBG,
-        padding: 20,
-    },
-    text: {
-        fontSize: 18,
-    },
-
-
-
-});
-

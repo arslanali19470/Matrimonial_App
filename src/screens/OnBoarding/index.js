@@ -3,13 +3,13 @@ import AppIntroSlider from 'react-native-app-intro-slider';
 import { OnBoardData } from '../../utils/data';
 import { responsiveHeight } from '../../utils/constant';
 import { PURPLE, WHITE } from '../../utils/colors';
-import Home from '../Home';
 import OnBoardRenderItem from '../../components/OnBoardRenderItem';
 import { useNavigation } from '@react-navigation/native';
+import LoginScreen from '../LoginScreen';
 
 const OnBoarding = () => {
     const navigation = useNavigation();
-    const [showHomePage, setshowHomePage] = useState(true);
+    const [showHomePage, setshowHomePage] = useState(false);
     const [currentIndex, setCurrentIndex] = useState(0);
     const sliderRef = useRef(null);
 
@@ -57,7 +57,7 @@ const OnBoarding = () => {
     }
 
     return (
-        <Home />
+        <LoginScreen />
     );
 };
 

@@ -15,7 +15,7 @@ import BtnSendRequest from '../../components/BtnSendRequest'
 import { BlurView, } from "@react-native-community/blur";
 import UnderLine from '../customComponents/UnderLine'
 
-const BottomView = ({ index }) => {
+const BottomView = ({ index, profileName, smallButton }) => {
     return (
         <View>
             <View style={{ flexDirection: "row", alignItems: "center", gap: 2 }}>
@@ -27,8 +27,9 @@ const BottomView = ({ index }) => {
                 />
             </View>
             <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
-                <Heading text={"Miss Aliya - 28"} fontFamily={"RobotoCondensed-ExtraBold"} fontSize={4.2} />
-                {(index != 1 ? (<View>
+                <Heading text={`${profileName} - 28`} fontFamily={"RobotoCondensed-ExtraBold"} fontSize={4.2} />
+                {/* <Heading text={profileName} fontFamily={"RobotoCondensed-ExtraBold"} fontSize={4.2} /> */}
+                {(smallButton != true ? (<View>
                     <Heading text={"100% Complete"} fontSize={1.4} color={PURPLE} fontFamily={"RobotoCondensed-Bold"} />
                     <Space height={.5} />
                     <View style={{ backgroundColor: PURPLE, height: 1.8, width: responsiveWidth(19) }} />
