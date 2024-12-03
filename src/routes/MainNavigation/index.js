@@ -11,13 +11,14 @@ import ThemeScreen from '../../screens/ThemeScreen';
 import TermsScreen from '../../screens/TermsScreen';
 import LoginScreen from '../../screens/LoginScreen';
 import EditProfile from '../../screens/EditProfile';
+import ProfileForm_1 from '../../screens/ProfileForm_1';
 
 const Stack = createStackNavigator();
 
 const MianNavigation = () => {
     return (
         <>
-            <Stack.Navigator initialRouteName="LoginScreen">
+            <Stack.Navigator initialRouteName="ProfileForm_1">
 
                 <Stack.Screen name="OnBoarding" component={OnBoarding}
                     options={{
@@ -65,6 +66,10 @@ const MianNavigation = () => {
                         headerShown: false,
                     }} />
                 <Stack.Screen name="EditProfile" component={EditProfile}
+                    options={{
+                        headerShown: false,
+                    }} />
+                <Stack.Screen name="ProfileForm_1" component={ProfileForm_1}
                     options={{
                         headerShown: false,
                     }} />

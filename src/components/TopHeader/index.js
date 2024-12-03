@@ -3,7 +3,7 @@ import React from 'react';
 import { hp, wp } from '../../utils/responsive';
 import Picture from '../../components/customComponents/Picture';
 import Heading from '../../components/customComponents/Heading';
-import { GRAYTEXT, WHITE } from '../../utils/colors';
+import { GRAYTEXT, Pink, WHITE } from '../../utils/colors';
 
 const TopHeader = ({
     leftIcon,
@@ -19,6 +19,12 @@ const TopHeader = ({
     onPressRight2,
     titleColor,
     showBar = showBar || true,
+    step = step || false,
+    step_V1,
+    step_V2,
+    coloredBorder,
+    coloredBorderWidth,
+
 }) => {
     return (
         <>
@@ -51,8 +57,9 @@ const TopHeader = ({
                             <Heading
                                 text={title}
                                 fontFamily={"RobotoCondensed-SemiBold"}
-                                style={styles.title}
+                                style={[styles.title]}
                                 color={titleColor}
+                                marginLeft={step ? wp(2.3) : 0}
                             />
                         )}
                     </View>
@@ -70,11 +77,23 @@ const TopHeader = ({
                             </TouchableOpacity>
                         )}
                     </View>
+                    {step &&
+                        <View style={{ width: wp(18), height: hp(3.5), backgroundColor: Pink, alignItems: "center", justifyContent: "center", borderRadius: 20 }}>
+                            <Heading text={`Step ${step_V1}/${step_V2}`} color={WHITE} textAlign="center" fontSize={1.6} weight={700} />
+                        </View>
+                    }
+
                 </View>
 
                 {/* Optional Divider */}
             </View >
-            {border && <View style={styles.divider} />
+            {border && <View style={[styles.divider, { marginBottom: coloredBorder ? -hp(.1) : hp(1.7) }]} />
+            }
+            {coloredBorder && <View style={{
+                height: 2,
+                width: wp(coloredBorderWidth),
+                backgroundColor: Pink,
+            }} />
             }
         </>
     );
@@ -117,6 +136,8 @@ const styles = StyleSheet.create({
         height: 1,
         width: '100%',
         backgroundColor: GRAYTEXT,
-        marginBottom: hp(1.7),
     },
+    coloredBorder: {
+
+    }
 });

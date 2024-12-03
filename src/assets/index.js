@@ -60,3 +60,7 @@ export const NewDelete = require('./images/NewDelete.png');
 export const NewLogout = require('./images/NewLogout.png');
 export const LoginBg = require('./images/LoginBg.png');
 export const ProfileMian = require('./images/ProfileMian.png');
+export const Male_icon = require('./images/Male_icon.png');
+export const Female_icon = require('./images/Female_icon.png');
+export const calender_icon = require('./images/calender_icon.png');
+export const Down_icon = require('./images/Down_icon.png');
