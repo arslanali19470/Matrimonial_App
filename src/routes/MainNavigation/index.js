@@ -12,13 +12,21 @@ import TermsScreen from '../../screens/TermsScreen';
 import LoginScreen from '../../screens/LoginScreen';
 import EditProfile from '../../screens/EditProfile';
 import ProfileForm_1 from '../../screens/ProfileForm_1';
+import ProfileForm_2 from '../../screens/ProfileForm_2';
+import ProfileForm_3 from '../../screens/ProfileForm_3';
+import ProfileForm_4 from '../../screens/ProfileForm_4';
+import LookingFor_1 from '../../screens/LookingFor_1';
+import LookingFor_2 from '../../screens/LookingFor_2';
+import LookingFor_3 from '../../screens/LookingFor_3';
+import PrefrenceScreen from '../../screens/PrefrenceScreen';
+import AddProfileIMG from '../../screens/AddProfileIMG';
 
 const Stack = createStackNavigator();
 
 const MianNavigation = () => {
     return (
         <>
-            <Stack.Navigator initialRouteName="ProfileForm_1">
+            <Stack.Navigator initialRouteName="AddProfileIMG">
 
                 <Stack.Screen name="OnBoarding" component={OnBoarding}
                     options={{
@@ -70,6 +78,38 @@ const MianNavigation = () => {
                         headerShown: false,
                     }} />
                 <Stack.Screen name="ProfileForm_1" component={ProfileForm_1}
+                    options={{
+                        headerShown: false,
+                    }} />
+                <Stack.Screen name="ProfileForm_2" component={ProfileForm_2}
+                    options={{
+                        headerShown: false,
+                    }} />
+                <Stack.Screen name="ProfileForm_3" component={ProfileForm_3}
+                    options={{
+                        headerShown: false,
+                    }} />
+                <Stack.Screen name="ProfileForm_4" component={ProfileForm_4}
+                    options={{
+                        headerShown: false,
+                    }} />
+                <Stack.Screen name="LookingFor_1" component={LookingFor_1}
+                    options={{
+                        headerShown: false,
+                    }} />
+                <Stack.Screen name="LookingFor_2" component={LookingFor_2}
+                    options={{
+                        headerShown: false,
+                    }} />
+                <Stack.Screen name="LookingFor_3" component={LookingFor_3}
+                    options={{
+                        headerShown: false,
+                    }} />
+                <Stack.Screen name="PrefrenceScreen" component={PrefrenceScreen}
+                    options={{
+                        headerShown: false,
+                    }} />
+                <Stack.Screen name="AddProfileIMG" component={AddProfileIMG}
                     options={{
                         headerShown: false,
                     }} />

@@ -83,6 +83,7 @@ export const styles = StyleSheet.create({
         borderColor: GRAYTEXT,
         borderStyle: 'dotted',
         padding: 15,
+        borderRadius: 10
     },
     cameraInner: {
         backgroundColor: GrayBG,

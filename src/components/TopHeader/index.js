@@ -3,7 +3,7 @@ import React from 'react';
 import { hp, wp } from '../../utils/responsive';
 import Picture from '../../components/customComponents/Picture';
 import Heading from '../../components/customComponents/Heading';
-import { GRAYTEXT, Pink, WHITE } from '../../utils/colors';
+import { BLACK, GRAYTEXT, Pink, ProfileNameColor, WHITE } from '../../utils/colors';
 
 const TopHeader = ({
     leftIcon,
@@ -23,7 +23,8 @@ const TopHeader = ({
     step_V1,
     step_V2,
     coloredBorder,
-    coloredBorderWidth,
+    coloredBorderWidth = coloredBorderWidth || 0,
+    circularI,
 
 }) => {
     return (
@@ -59,7 +60,7 @@ const TopHeader = ({
                                 fontFamily={"RobotoCondensed-SemiBold"}
                                 style={[styles.title]}
                                 color={titleColor}
-                                marginLeft={step ? wp(2.3) : 0}
+                                marginLeft={step ? wp(2.3) : circularI ? wp(1.2) : 0}
                             />
                         )}
                     </View>
@@ -82,6 +83,16 @@ const TopHeader = ({
                             <Heading text={`Step ${step_V1}/${step_V2}`} color={WHITE} textAlign="center" fontSize={1.6} weight={700} />
                         </View>
                     }
+                    {circularI &&
+                        <TouchableOpacity style={styles.infoButton}>
+                            <Heading
+                                text="i"
+                                // fontFamily="RobotoCondensed-ExtraBold"
+                                weight={700}
+                                fontSize={1.9}
+                                color={ProfileNameColor}
+                            />
+                        </TouchableOpacity>}
 
                 </View>
 
@@ -139,5 +150,14 @@ const styles = StyleSheet.create({
     },
     coloredBorder: {
 
-    }
+    },
+    infoButton: {
+        height: hp(3),
+        width: hp(3),
+        borderWidth: 1.5,
+        borderColor: BLACK,
+        alignItems: 'center',
+        borderRadius: hp(1.5),
+        justifyContent: 'center',
+    },
 });

@@ -1,5 +1,5 @@
 import { ScrollView, StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import TopHeader from '../../components/TopHeader';
 import { BackIcon, Down_icon, Female_icon, Male_icon } from '../../assets';
 import { BLACK, GRAYTEXT, ProfileNameColor, PURPLE, WHITE } from '../../utils/colors';
@@ -13,6 +13,7 @@ import Button from '../../components/customComponents/Button';
 
 const ProfileForm_1 = () => {
     const navigation = useNavigation();
+    const [Gencheck, setGencheck] = useState(true)
     return (
         <>
             <TopHeader
@@ -28,7 +29,8 @@ const ProfileForm_1 = () => {
                 step_V1="1"
                 step_V2="3"
             />
-            <ScrollView style={styles.scrollView}>
+            <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
+                <Space height={2} />
                 <Heading
                     text="Add information about yourself"
                     fontFamily="RobotoCondensed-SemiBold"
@@ -77,22 +79,23 @@ const ProfileForm_1 = () => {
                         marginBottom={1}
                     />
                     <View style={styles.genderRow}>
-                        <TouchableOpacity style={styles.genderOptionMale}>
+                        <TouchableOpacity style={[styles.genderOptionMale, { backgroundColor: Gencheck ? 'rgba(73, 11, 62, 0.2)' : 'rgba(255, 255, 255, 0.2)', }]} onPress={() => setGencheck(true)}>
                             <Picture localSource={Male_icon} height={hp(5.1)} width={wp(10.3)} />
                             <Heading
                                 text="Male"
-                                fontFamily="Lato-Bold"
+                                fontFamily={Gencheck ? "Lato-Bold" : "Lato-SemiBold"}
                                 fontSize={2.4}
-                                color={PURPLE}
+                                // color={PURPLE}
+                                color={Gencheck ? PURPLE : ProfileNameColor}
                             />
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.genderOptionFemale}>
+                        <TouchableOpacity style={[styles.genderOptionFemale, { backgroundColor: Gencheck ? 'rgba(255, 255, 255, 0.2)' : 'rgba(73, 11, 62, 0.2)', }]} onPress={() => setGencheck(false)}>
                             <Picture localSource={Female_icon} height={hp(5.5)} width={wp(7.5)} />
                             <Heading
                                 text="Female"
-                                fontFamily="Lato-SemiBold"
+                                fontFamily={Gencheck ? "Lato-SemiBold" : "Lato-Bold"}
                                 fontSize={2.4}
-                                color={ProfileNameColor}
+                                color={Gencheck ? ProfileNameColor : PURPLE}
                             />
                         </TouchableOpacity>
                     </View>
@@ -126,7 +129,7 @@ const ProfileForm_1 = () => {
                     </View>
                 </View>
                 <Space height={5} />
-                <Button title="Next" />
+                <Button title="Next" onPress={() => navigation.navigate("ProfileForm_2")} />
                 <Space height={7} />
             </ScrollView>
         </>
@@ -137,11 +140,12 @@ export default ProfileForm_1;
 
 const styles = StyleSheet.create({
     scrollView: {
-        padding: wp(5),
+        // padding: wp(5),
+        alignSelf: "center"
     },
     card: {
         backgroundColor: WHITE,
-        width: wp(90),
+        width: wp(93),
         borderRadius: wp(2),
         marginTop: hp(2),
         paddingHorizontal: wp(3),
@@ -176,7 +180,7 @@ const styles = StyleSheet.create({
         borderRadius: wp(3),
         borderWidth: 1,
         borderColor: PURPLE,
-        backgroundColor: 'rgba(73, 11, 62, 0.2)',
+
     },
     genderOptionFemale: {
         justifyContent: 'center',

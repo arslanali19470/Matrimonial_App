@@ -64,3 +64,4 @@ export const Male_icon = require('./images/Male_icon.png');
 export const Female_icon = require('./images/Female_icon.png');
 export const calender_icon = require('./images/calender_icon.png');
 export const Down_icon = require('./images/Down_icon.png');
+export const EqualIcon = require('./images/EqualIcon.png');
